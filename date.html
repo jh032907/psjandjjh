@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>우리 목요일 데이트 코스 골라줘! 🌿</title>
+    <style>
+        :root {
+            --primary-color: #ff6b81;
+            --bg-color: #fff5f7;
+            --text-color: #333;
+        }
+
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        p.subtitle {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border: 2px solid #eee;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+
+        .option-label:hover {
+            border-color: var(--primary-color);
+            background-color: #fff9fa;
+        }
+
+        input[type="radio"] {
+            margin-right: 12px;
+            accent-color: var(--primary-color);
+            transform: scale(1.2);
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 12px;
+            cursor: pointer;
+            width: 100%;
+            transition: opacity 0.2s;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .step {
+            display: none;
+        }
+
+        .step.active {
+            display: block;
+        }
+
+        .result-box {
+            background: #fff9fa;
+            border: 2px dashed var(--primary-color);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .result-box p {
+            margin: 8px 0;
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <!-- Step 1: 음식점 고르기 -->
+        <div id="step-1" class="step active">
+            <h2>🍽️ 목요일 저녁 뭐 먹을까?</h2>
+            <p class="subtitle">내가 찾은 후보 3개 중 가장 끌리는 곳을 골라줘!</p>
+            <div class="options">
+                <label class="option-label">
+                    <input type="radio" name="restaurant" value="광화문 디타워 (깔끔한 다이닝)" checked> 광화문 디타워 (깔끔한 다이닝)
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="restaurant" value="을지로 파스타 맛집"> 을지로 분위기 좋은 파스타집
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="restaurant" value="청계천 근처 아기자기한 양식당"> 청계천 근처 아기자기한 양식당
+                </label>
+            </div>
+            <button onclick="nextStep(2)">다음으로 넘어가기 ➡️</button>
+        </div>
+
+        <!-- Step 2: 카페 고르기 -->
+        <div id="step-2" class="step">
+            <h2>☕ 식후에 갈 카페는?</h2>
+            <p class="subtitle">맛있는 커피와 달달한 디저트가 있는 곳!</p>
+            <div class="options">
+                <label class="option-label">
+                    <input type="radio" name="cafe" value="펠트커피 청계천점 (레드 인테리어 감성)" checked> 펠트커피 청계천점 (힙한 감성)
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="cafe" value="포비 을지로점 (통창 베이글 맛집)"> 포비 을지로점 (탁 트인 베이글 카페)
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="cafe" value="청계천 뷰가 보이는 조용한 카페"> 청계천 뷰가 보이는 조용한 카페
+                </label>
+            </div>
+            <button onclick="nextStep(3)">다음으로 넘어가기 ➡️</button>
+        </div>
+
+        <!-- Step 3: 청계천 산책 스타일 -->
+        <div id="step-3" class="step">
+            <h2>🚶‍♀️ 청계천 산책 코스 어때?</h2>
+            <p class="subtitle">어떤 분위기로 걷고 싶어?</p>
+            <div class="options">
+                <label class="option-label">
+                    <input type="radio" name="walk" value="해질무렵 조명 켜질 때 로맨틱 산책" checked> 해질무렵 조명 켜질 때 로맨틱 산책 🌟
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="walk" value="카페에서 커피 들고 가볍게 슥 걷기"> 테이크아웃 커피 들고 가볍게 슥 걷기 ☕
+                </label>
+            </div>
+            <button onclick="showResult()">결과 확인하기 ✨</button>
+        </div>
+
+        <!-- Step 4: 결과 화면 -->
+        <div id="step-4" class="step">
+            <h2>🎉 데이트 코스 완성!</h2>
+            <p class="subtitle">우리가 함께 만들 목요일 데이트 플랜이야</p>
+            <div class="result-box">
+                <p><b>🍽️ 저녁:</b> <span id="res-restaurant"></span></p>
+                <p><b>☕ 카페:</b> <span id="res-cafe"></span></p>
+                <p><b>🚶 산책:</b> <span id="res-walk"></span></p>
+            </div>
+            <p style="font-size: 14px; color: #555;">목요일에 이대로 만나서 재밌게 놀자! 💕</p>
+        </div>
+    </div>
+
+    <script>
+        function nextStep(stepNum) {
+            // 현재 스텝 숨기기
+            document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
+            // 다음 스텝 보이기
+            document.getElementById('step-' + stepNum).classList.add('active');
+        }
+
+        function showResult() {
+            // 선택한 값들 가져오기
+            const restaurant = document.querySelector('input[name="restaurant"]:checked').value;
+            const cafe = document.querySelector('input[name="cafe"]:checked').value;
+            const walk = document.querySelector('input[name="walk"]:checked').value;
+
+            // 결과 화면에 텍스트 채워넣기
+            document.getElementById('res-restaurant').innerText = restaurant;
+            document.getElementById('res-cafe').innerText = cafe;
+            document.getElementById('res-walk').innerText = walk;
+
+            // 결과 스텝으로 이동
+            nextStep(4);
+        }
+    </script>
+
+</body>
+</html>
